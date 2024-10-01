@@ -1,12 +1,22 @@
 import sys
 
+
+# USAGE
+# [-e | -d] [text] [key]
+# -e is used for encryption
+# -d is used for decryption
+# text and key must be 16 bits
+
+
+#get arg vals
 if(len(sys.argv) != 4):
     raise Exception("3 input parameters required: [-e | -d] [text] [key]")
-operation = sys.argv[1] #-e or -d
+encrypt_arg = sys.argv[1] #-e or -d
 
-if(operation != "-e" and operation != "-d"):
+if(encrypt_arg != "-e" and encrypt_arg != "-d"):
     raise Exception("First parameter must be either -e or -d.")
 
+encrypt_arg = True if encrypt_arg == "-e" else False
 text_arg = sys.argv[2]
 key_arg = sys.argv[3]
 
@@ -113,5 +123,4 @@ def cipher(key, text, encrypt):
 
     
 
-operation = True if operation == "-e" else False
-result = cipher(key_arg, text_arg, operation)
+result = cipher(key_arg, text_arg, encrypt_arg)
